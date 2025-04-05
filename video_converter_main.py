@@ -102,7 +102,7 @@ class VideoConverter:
                 self.status_label.config(text=f'正在转换 {i+1}/{total_files}')
                 self.progress['value'] = (i+1)/total_files * 100
                 self.progress.update()
-                subprocess.run(['ffmpeg', '-i', input_file, output_file], check=True)
+                subprocess.run(['ffmpeg', '-i', input_file, output_file], check=True, creationflags=subprocess.CREATE_NO_WINDOW)
             self.status_label.config(text='批量转换完成！', fg='green')
             self.update_file_info(output_file)
             tk.messagebox.showinfo("成功", f"成功转换了 {total_files} 个文件！")
